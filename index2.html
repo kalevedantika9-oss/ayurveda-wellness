@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AyurVeda Wellness | Holistic Lifestyle & Diet Recommendation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f8fff5;
+      color: #243424;
+      line-height: 1.6;
+    }
+
+    :root {
+      --green-dark: #1b5e20;
+      --green: #2e7d32;
+      --green-light: #66bb6a;
+      --cream: #fffaf0;
+      --gold: #d4af37;
+      --soft: #edf7ed;
+      --white: #ffffff;
+      --shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: linear-gradient(90deg, #1b5e20, #388e3c, #66bb6a);
+      padding: 14px 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff8d6;
+      border-bottom: 2px solid #fff8d6;
+      padding-bottom: 3px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(20, 70, 30, 0.55), rgba(20, 70, 30, 0.55)),
+        url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1600&q=80')
+        no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-box {
+      max-width: 900px;
+      background: rgba(0,0,0,0.28);
+      padding: 40px;
+      border-radius: 24px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 8px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #ffd54f, #ffca28);
+      color: #3e2723;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      color: var(--green-dark);
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 35px;
+      color: #4e5d4e;
+      font-size: 17px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card h3 {
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .two-col img {
+      width: 100%;
+      max-width: 500px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      display: block;
+      margin: auto;
+    }
+
+    .content-box {
+      background: white;
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #f1f8e9, #fffde7);
+    }
+
+    /* Forms */
+    .form-box {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--green-dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #c5e1c5;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f1f8e9;
+      border-left: 6px solid #43a047;
+      display: none;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .blog-card .blog-content {
+      padding: 20px;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .member-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .member-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 15px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #e8f5e9;
+      color: var(--green-dark);
+      border-radius: 20px;
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .disclaimer,
+    .references {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 25px;
+    }
+
+    footer {
+      background: #163c18;
+      color: white;
+      text-align: center;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: #e0f2e9;
+    }
+
+    @media (max-width: 1100px) {
+      .card-grid,
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .member-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .card-grid,
+      .blog-grid,
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">🌿 AyurVeda Wellness</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#principles">Principles</a></li>
+      <li><a href="#quiz">Dosha Quiz</a></li>
+      <li><a href="#diet">Diet</a></li>
+      <li><a href="#routine">Dinacharya</a></li>
+      <li><a href="#consultation">Consultation</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#members">Experts</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME -->
+  <section class="hero" id="home">
+    <div class="hero-box">
+      <h1>Holistic Ayurvedic Lifestyle & Diet Recommendation</h1>
+      <p>
+        Discover your dosha, balance your body and mind, follow natural healing principles,
+        and get personalized wellness guidance through Ayurveda.
+      </p>
+      <a href="#quiz" class="btn">Take Dosha Quiz</a>
+      <a href="#consultation" class="btn">Book Consultation</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Ayurveda</h2>
+      <p class="section-subtitle">
+        Ayurveda is India’s ancient science of life that promotes harmony between body, mind, and soul through food, routine, herbs, and lifestyle practices.
+      </p>
+
+      <div class="two-col">
+        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80" alt="Ayurveda Wellness">
+        <div class="content-box">
+          <h3 style="color:#2e7d32; margin-bottom:10px;">Why Choose Ayurvedic Living?</h3>
+          <p>
+            Ayurveda focuses on prevention and natural healing by understanding your unique body constitution.
+            It uses dosha-based diet, daily routines, herbal support, yoga, pranayama, and seasonal living.
+          </p>
+          <br>
+          <p>
+            This website offers a complete Ayurvedic ecosystem including dosha quiz, customized diet recommendations,
+            expert consultation booking, kitchen remedies, blog content, and practitioner profiles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Ayurvedic Principles</h2>
+      <p class="section-subtitle">Understand the core foundation of Ayurveda for better health and wellness.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>The Three Doshas</h3>
+          <p><strong>Vata</strong> = movement & airiness, <strong>Pitta</strong> = heat & transformation, <strong>Kapha</strong> = stability & nourishment. Each person has a unique doshic balance.</p>
+        </div>
+        <div class="card">
+          <h3>Pancha Mahabhutas</h3>
+          <p>The five elements are <strong>Space, Air, Fire, Water, Earth</strong>. These elements form the doshas and influence body functions, emotions, and digestion.</p>
+        </div>
+        <div class="card">
+          <h3>Agni & Ama</h3>
+          <p><strong>Agni</strong> is digestive fire. Strong Agni means good health. <strong>Ama</strong> means toxins or undigested waste. Ayurveda focuses on boosting Agni and reducing Ama.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOSHAS DETAILS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">The Three Doshas Explained</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Vata Dosha</h3>
+          <p>Light, dry, cold, mobile. Associated with movement, creativity, quick thinking, but can cause anxiety, dryness, and irregular digestion when imbalanced.</p>
+          <span class="tag">Best: Warm, oily, grounding food</span>
+        </div>
+        <div class="card">
+          <h3>Pitta Dosha</h3>
+          <p>Hot, sharp, intense. Associated with digestion, intelligence, ambition, but can cause acidity, irritability, and inflammation when aggravated.</p>
+          <span class="tag">Best: Cooling, calming, less spicy food</span>
+        </div>
+        <div class="card">
+          <h3>Kapha Dosha</h3>
+          <p>Heavy, slow, cool, stable. Associated with strength, immunity, calmness, but can cause lethargy, weight gain, and congestion when excessive.</p>
+          <span class="tag">Best: Light, warm, stimulating meals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOSHA QUIZ -->
+  <section id="quiz">
+    <div class="container">
+      <h2 class="section-title">Free Dosha Quiz / Body Type Assessment</h2>
+      <p class="section-subtitle">Select the option that describes you most. This simple assessment gives a basic dominant dosha idea.</p>
+
+      <div class="form-box">
+        <div class="form-group">
+          <label>1. Your body frame is mostly:</label>
+          <select id="q1">
+            <option value="">-- Select --</option>
+            <option value="vata">Thin / light</option>
+            <option value="pitta">Medium / athletic</option>
+            <option value="kapha">Broad / sturdy</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>2. Your digestion is usually:</label>
+          <select id="q2">
+            <option value="">-- Select --</option>
+            <option value="vata">Irregular</option>
+            <option value="pitta">Strong / intense hunger</option>
+            <option value="kapha">Slow / steady</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>3. Your energy pattern is:</label>
+          <select id="q3">
+            <option value="">-- Select --</option>
+            <option value="vata">Quick bursts, then tired</option>
+            <option value="pitta">Focused and intense</option>
+            <option value="kapha">Stable and calm</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>4. Your mind tends to be:</label>
+          <select id="q4">
+            <option value="">-- Select --</option>
+            <option value="vata">Creative but restless</option>
+            <option value="pitta">Sharp and driven</option>
+            <option value="kapha">Patient and peaceful</option>
+          </select>
+        </div>
+
+        <button class="btn" onclick="calculateDosha()">Find My Dosha</button>
+        <div class="result-box" id="quizResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIET -->
+  <section id="diet" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Ayurvedic Diet & Nutrition</h2>
+      <p class="section-subtitle">Balanced eating according to dosha, season, digestion, and mindful habits.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Vata Diet</h3>
+          <p><strong>Eat:</strong> Warm soups, rice, wheat, milk, ghee, sweet fruits, cooked vegetables.</p>
+          <p><strong>Avoid:</strong> Cold drinks, dry snacks, raw salads, excess fasting.</p>
+        </div>
+        <div class="card">
+          <h3>Pitta Diet</h3>
+          <p><strong>Eat:</strong> Coconut water, cucumber, leafy greens, sweet fruits, milk, rice.</p>
+          <p><strong>Avoid:</strong> Spicy, fried, oily, sour foods, excess tea/coffee.</p>
+        </div>
+        <div class="card">
+          <h3>Kapha Diet</h3>
+          <p><strong>Eat:</strong> Light meals, ginger tea, warm water, green vegetables, millets, honey.</p>
+          <p><strong>Avoid:</strong> Heavy meals, sweets, dairy excess, oily foods, daytime sleep.</p>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Seasonal Eating (Ritucharya)</h3>
+          <p><strong>Summer:</strong> Cooling foods, coconut water, cucumber, melons.<br>
+          <strong>Winter:</strong> Warm soups, nuts, ghee, herbal tea.<br>
+          <strong>Monsoon:</strong> Light cooked food, boiled water, avoid stale food.</p>
+        </div>
+        <div class="card">
+          <h3>Kitchen Pharmacy</h3>
+          <p><strong>Turmeric:</strong> immunity & anti-inflammatory<br>
+          <strong>Ginger:</strong> digestion & cold relief<br>
+          <strong>Cumin:</strong> improves digestion<br>
+          <strong>Cardamom:</strong> freshens breath & supports gut health</p>
+        </div>
+        <div class="card">
+          <h3>Food Combinations to Avoid</h3>
+          <p>Ayurveda advises avoiding certain pairings such as <strong>milk + fish</strong>, <strong>fruit + milk (some cases)</strong>, and very heavy incompatible meals that weaken digestion.</p>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="form-box">
+        <h3 style="color:#2e7d32; margin-bottom:15px;">Customized Diet Plan Generator</h3>
+        <div class="form-group">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="userDosha">Select Dosha</label>
+          <select id="userDosha">
+            <option value="">-- Select Dosha --</option>
+            <option value="vata">Vata</option>
+            <option value="pitta">Pitta</option>
+            <option value="kapha">Kapha</option>
+          </select>
+        </div>
+        <button class="btn" onclick="generateDietPlan()">Generate Diet Plan</button>
+        <div class="result-box" id="dietResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIONABLE RECOMMENDATIONS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Key Ayurvedic Recommendations</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Eat According to Hunger</h3>
+          <p>Eat only when the previous meal is properly digested. This supports strong Agni and prevents toxin accumulation.</p>
+        </div>
+        <div class="card">
+          <h3>Mindful Eating</h3>
+          <p>Avoid mobile, TV, stress, or rushing while eating. Sit calmly and chew food well for better absorption.</p>
+        </div>
+        <div class="card">
+          <h3>Warm Food Principle</h3>
+          <p>Favor warm, freshly cooked meals over cold, stale, or overly raw foods—especially when digestion is weak.</p>
+        </div>
+        <div class="card">
+          <h3>Meal Timing</h3>
+          <p>Have your heaviest meal at midday when digestive fire is strongest. Keep dinner light and finish by 7–8 PM.</p>
+        </div>
+        <div class="card">
+          <h3>Home Detox Knowledge</h3>
+          <p>Gentle detox may include warm water, light khichdi meals, herbal teas, and rest. Panchakarma should be done under expert guidance.</p>
+        </div>
+        <div class="card">
+          <h3>Daily Consistency</h3>
+          <p>Regular wake-up time, meal timing, movement, and sleep create stability and improve physical and mental balance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINACHARYA -->
+  <section id="routine" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Lifestyle & Daily Routine (Dinacharya)</h2>
+      <p class="section-subtitle">Simple daily habits that support digestion, immunity, sleep, and emotional balance.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Morning Rituals</h3>
+          <p>Tongue scraping, oil pulling, drinking warm water, gentle stretching, and mindful breathing help start the day with balance.</p>
+        </div>
+        <div class="card">
+          <h3>Sleep Hygiene</h3>
+          <p>Sleep early, avoid heavy late-night meals, reduce screen exposure, and create a calm bedtime routine for better rest.</p>
+        </div>
+        <div class="card">
+          <h3>Yoga & Pranayama</h3>
+          <p>Practice Anulom Vilom, Bhramari, and gentle yoga. Different doshas benefit from different intensity and pacing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATION -->
+  <section id="consultation">
+    <div class="container">
+      <h2 class="section-title">Online Services / Consultation</h2>
+      <p class="section-subtitle">Book a one-on-one video consultation with an Ayurvedic expert and get a personalized wellness plan.</p>
+
+      <div class="form-box">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="service">
+            <option value="">-- Select Service --</option>
+            <option>Video Consultation</option>
+            <option>Customized Diet Plan</option>
+            <option>Stress Management Guidance</option>
+            <option>Digestive Wellness Program</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" id="date">
+        </div>
+
+        <div class="form-group">
+          <label>Health Concern / Goal</label>
+          <textarea id="issue" rows="4" placeholder="Mention your health issue, goal, or concern"></textarea>
+        </div>
+
+        <button class="btn" onclick="bookConsultation()">Book Consultation</button>
+        <div class="result-box" id="bookingResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Blog / Knowledge Hub</h2>
+      <p class="section-subtitle">Educational articles on herbs, immunity, stress relief, digestion, and Ayurvedic living.</p>
+
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80" alt="Ashwagandha">
+          <div class="blog-content">
+            <h3 style="color:#2e7d32;">Immunity-Boosting Herbs</h3>
+            <p>Learn about Ashwagandha, Tulsi, Turmeric, and Guduchi for strength, stress support, and seasonal immunity.</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80" alt="Detox Tips">
+          <div class="blog-content">
+            <h3 style="color:#2e7d32;">Ayurvedic Detox Tips</h3>
+            <p>Understand Ama, gentle home detox, warm foods, hydration, rest, and how to support digestive fire naturally.</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80" alt="Stress Management">
+          <div class="blog-content">
+            <h3 style="color:#2e7d32;">Stress Management with Ayurveda</h3>
+            <p>Balance your nervous system through routine, breathing practices, calming herbs, sleep support, and mindful eating.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 MEMBERS / EXPERT PROFILES -->
+  <section id="members">
+    <div class="container">
+      <h2 class="section-title">Meet Our 4 Ayurvedic Experts</h2>
+      <p class="section-subtitle">Trusted wellness professionals guiding your natural healing journey.</p>
+
+      <div class="member-grid">
+        <div class="member-card">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80" alt="Dr. Aarya Sharma">
+          <h3 style="color:#2e7d32;">Dr. Bhairavi Deshmukh</h3>
+          <p>Chief Ayurvedic Consultant</p>
+          <span class="tag">Dosha Assessment Specialist</span>
+        </div>
+
+        <div class="member-card">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80" alt="Dr. Meera Joshi">
+          <h3 style="color:#2e7d32;">Dr. Swati Mahore</h3>
+          <p>Diet & Nutrition Expert</p>
+          <span class="tag">Customized Meal Planning</span>
+        </div>
+
+        <div class="member-card">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=80" alt="Dr. Rohan Kulkarni">
+          <h3 style="color:#2e7d32;">Dr. Amit Kavimandan</h3>
+          <p>Digestive Wellness Expert</p>
+          <span class="tag">Agni & Gut Health</span>
+        </div>
+
+        <div class="member-card">
+          <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=900&q=80" alt="Dr. Kavya Patil">
+          <h3 style="color:#2e7d32;">Dr. Rashmi</h3>
+          <p>Yoga & Lifestyle Mentor</p>
+          <span class="tag">Dinacharya & Stress Balance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Contact & Support</h2>
+      <div class="form-box">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="contactName" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Email Support</label>
+          <input type="email" id="contactEmail" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label>Your Query</label>
+          <textarea id="contactMsg" rows="4" placeholder="Ask about remedies, diet plans, consultations, or support"></textarea>
+        </div>
+        <button class="btn" onclick="sendMessage()">Send Message</button>
+
+        <div style="margin-top:20px;">
+          <p><strong>📍 Address:</strong> AyurVeda Wellness Center > Sai Nagar, Amaravati, Maharashtra, India</p>
+          <p><strong>📞 Phone:</strong> +91 9175367806</p>
+          <p><strong>📧 Email:</strong> support@ayurvedawellness.com</p>
+          <p><strong>💳 Secure Payment:</strong> UPI / Cards / Net Banking (Demo UI for project purpose)</p>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <h3 style="color:#c62828; margin-bottom:10px;">⚠ Disclaimer</h3>
+        <p>
+          The information provided on this website is for educational and wellness purposes only.
+          It is not a substitute for professional medical diagnosis, treatment, or emergency care.
+          Always consult a qualified healthcare provider or Ayurvedic practitioner for personalized advice.
+        </p>
+      </div>
+
+      <div class="references">
+        <h3 style="color:#1b5e20; margin-bottom:10px;">📚 References & Credibility</h3>
+        <p>
+          Traditional references may include <strong>Charaka Samhita</strong>, <strong>Sushruta Samhita</strong>,
+          and general modern Ayurvedic wellness guidelines. This project structure is designed for educational/demo use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 AyurVeda Wellness | Holistic Ayurvedic Lifestyle & Diet Recommendation</p>
+    <p class="small">Designed for educational / project purpose • Mobile Responsive • Modern Ayurvedic Theme</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function calculateDosha() {
+      const answers = [
+        document.getElementById("q1").value,
+        document.getElementById("q2").value,
+        document.getElementById("q3").value,
+        document.getElementById("q4").value
+      ];
+
+      if (answers.includes("")) {
+        const quizResult = document.getElementById("quizResult");
+        quizResult.style.display = "block";
+        quizResult.innerHTML = "<strong>Please answer all quiz questions.</strong>";
+        return;
+      }
+
+      let vata = 0, pitta = 0, kapha = 0;
+
+      answers.forEach(ans => {
+        if (ans === "vata") vata++;
+        if (ans === "pitta") pitta++;
+        if (ans === "kapha") kapha++;
+      });
+
+      let result = "";
+      if (vata >= pitta && vata >= kapha) {
+        result = `
+          <h3>🌿 Your Dominant Dosha is Vata</h3>
+          <p><strong>Nature:</strong> Light, dry, cold, mobile.</p>
+          <p><strong>Recommended:</strong> Warm cooked meals, soups, ghee, regular routine, calming practices.</p>
+        `;
+      } else if (pitta >= vata && pitta >= kapha) {
+        result = `
+          <h3>🌿 Your Dominant Dosha is Pitta</h3>
+          <p><strong>Nature:</strong> Hot, sharp, intense.</p>
+          <p><strong>Recommended:</strong> Cooling foods, less spice, coconut water, calm environment, stress management.</p>
+        `;
+      } else {
+        result = `
+          <h3>🌿 Your Dominant Dosha is Kapha</h3>
+          <p><strong>Nature:</strong> Heavy, cool, stable.</p>
+          <p><strong>Recommended:</strong> Light warm meals, exercise, ginger tea, energizing routine, less heavy foods.</p>
+        `;
+      }
+
+      const quizResult = document.getElementById("quizResult");
+      quizResult.style.display = "block";
+      quizResult.innerHTML = result;
+    }
+
+    function generateDietPlan() {
+      const name = document.getElementById("userName").value;
+      const dosha = document.getElementById("userDosha").value;
+      const dietResult = document.getElementById("dietResult");
+
+      if (!name || !dosha) {
+        dietResult.style.display = "block";
+        dietResult.innerHTML = "<strong>Please enter your name and select your dosha.</strong>";
+        return;
+      }
+
+      let plan = "";
+
+      if (dosha === "vata") {
+        plan = `
+          <h3>Hello ${name}, Your Vata Diet Plan 🌿</h3>
+          <p><strong>Breakfast:</strong> Warm porridge, dates, milk</p>
+          <p><strong>Lunch:</strong> Rice, dal, cooked vegetables, ghee</p>
+          <p><strong>Dinner:</strong> Light khichdi or warm soup</p>
+          <p><strong>Tip:</strong> Avoid cold foods and irregular meal timings.</p>
+        `;
+      } else if (dosha === "pitta") {
+        plan = `
+          <h3>Hello ${name}, Your Pitta Diet Plan 🌿</h3>
+          <p><strong>Breakfast:</strong> Sweet fruits, soaked raisins, herbal drink</p>
+          <p><strong>Lunch:</strong> Rice, leafy vegetables, cucumber, mild dal</p>
+          <p><strong>Dinner:</strong> Light vegetable soup and chapati</p>
+          <p><strong>Tip:</strong> Avoid very spicy, fried, and acidic foods.</p>
+        `;
+      } else {
+        plan = `
+          <h3>Hello ${name}, Your Kapha Diet Plan 🌿</h3>
+          <p><strong>Breakfast:</strong> Ginger tea, light poha/upma</p>
+          <p><strong>Lunch:</strong> Millets, dal, steamed vegetables</p>
+          <p><strong>Dinner:</strong> Light soup or sautéed vegetables</p>
+          <p><strong>Tip:</strong> Avoid sweets, overeating, and heavy dairy foods.</p>
+        `;
+      }
+
+      dietResult.style.display = "block";
+      dietResult.innerHTML = plan;
+    }
+
+    function bookConsultation() {
+      const fullName = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const service = document.getElementById("service").value;
+      const date = document.getElementById("date").value;
+      const issue = document.getElementById("issue").value;
+      const bookingResult = document.getElementById("bookingResult");
+
+      if (!fullName || !email || !phone || !service || !date || !issue) {
+        bookingResult.style.display = "block";
+        bookingResult.innerHTML = "<strong>Please fill all consultation details.</strong>";
+        return;
+      }
+
+      bookingResult.style.display = "block";
+      bookingResult.innerHTML = `
+        <h3>✅ Consultation Booked Successfully</h3>
+        <p><strong>Name:</strong> ${fullName}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p>Our team will contact you soon on your email/phone for confirmation.</p>
+      `;
+
+      document.getElementById("fullName").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("service").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("issue").value = "";
+    }
+
+    function sendMessage() {
+      const name = document.getElementById("contactName").value;
+      const email = document.getElementById("contactEmail").value;
+      const message = document.getElementById("contactMsg").value;
+
+      if (!name || !email || !message) {
+        alert("Please fill all contact details.");
+        return;
+      }
+
+      alert("Thank you, " + name + "! Your message has been sent successfully.");
+      document.getElementById("contactName").value = "";
+      document.getElementById("contactEmail").value = "";
+      document.getElementById("contactMsg").value = "";
+    }
+  </script>
+
+</body>
+</html>
